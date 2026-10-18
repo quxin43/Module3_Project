@@ -1,0 +1,12 @@
+{
+ "shortlist": [
+  "MLP",
+  "Random forest",
+  "Logistic regression"
+ ],
+ "macro_f1": {
+  "MLP": 0.42328809262455086,
+  "Random forest": 0.4211605994368767,
+  "Logistic regression": 0.4207305174893045
+ }
+}

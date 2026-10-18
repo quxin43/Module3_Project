@@ -1,0 +1,12 @@
+pandas==3.0.5
+numpy==2.5.3
+scikit-learn==1.9.1
+imbalanced-learn==0.14.2
+xgboost==3.4.1
+vectorbt==1.1.2
+yfinance==1.7.0
+matplotlib==3.11.2
+pyarrow==26.0.0
+scipy==1.18.1
+jupyter
+pytest==9.1.1
