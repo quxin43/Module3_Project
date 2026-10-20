@@ -1,0 +1,10 @@
+{
+ "model": "Logistic regression",
+ "rule": "c = 0.45",
+ "cutoff": 0.45,
+ "shortlist": [
+  "Random forest",
+  "Logistic regression",
+  "K-nearest neighbours"
+ ]
+}
