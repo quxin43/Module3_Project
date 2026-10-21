@@ -4,19 +4,21 @@ SCTP Data Science, Module 3 project. The question: **can a classifier predict wh
 
 ## Result
 
-| | Chosen model: logistic regression, Sell only if P(Sell) ≥ 0.50 | Buy & Hold |
-|---|---|---|
-| Test period | 4 Jan 2021 → 9 Oct 2026 (untouched until the end) | same days |
-| Macro-F1 (dummy: 0.341) | **0.399** | n/a |
-| $10,000 becomes | **$21,272** | **$22,787** |
-| Total return / CAGR | +112.7% / 14.0% | +127.9% / 15.3% |
-| Sharpe / max drawdown | 0.88 / −25.8% | 0.95 / −24.5% |
-| Trades / costs paid | 7 / $135 | 1 / $15 |
-| Years won | 0 of 6 (3 tied) | n/a |
+The project was run twice. The **first run** tuned each model with randomized search and kept the single highest practice score. The **rerun** replaced that with a fixed grid and neighbour smoothing (see below); its full recipe was committed in [`docs/rerun_recipe.md`](docs/rerun_recipe.md) before any rerun result existed. Both test results are reported.
 
-The classifier has real but small skill: it is better than the dummy, and mostly at spotting calm weeks. After costs it **does not beat Buy & Hold** on the untouched test, even though it did in validation (2005–2020), mostly by stepping aside in the 2008 crash. See [`reports/lessons_learned.md`](reports/lessons_learned.md).
+| Test, 4 Jan 2021 → 9 Oct 2026 | First run | Rerun (current method) | Buy & Hold |
+|---|---|---|---|
+| Model and Sell cut-off | Logistic regression, c = 0.50 | Logistic regression, c = 0.45 | n/a |
+| Macro-F1 (dummy: 0.341) | 0.399 | **0.400** | n/a |
+| $10,000 becomes | $21,272 | **$20,500** | **$22,787** |
+| vs Buy & Hold | −$1,515 | −$2,288 | n/a |
+| Sharpe / max drawdown | 0.88 / −25.8% | 0.88 / −30.3% | 0.95 / −24.5% |
+| Trades / costs paid | 7 / $135 | 31 / $524 | 1 / $15 |
+| Years won (of 6) | 0 (3 tied) | 0 (2 tied) | n/a |
 
-![Portfolio value vs Buy & Hold](figures/03_test_equity.png)
+The classifier has real but small skill: it is better than the dummy, and mostly at spotting calm weeks. After costs it **does not beat Buy & Hold** on the test in either run, even though it did in validation (2005–2020), mostly by stepping aside in 2008 (and 2011 in the rerun). See [`reports/lessons_learned.md`](reports/lessons_learned.md).
+
+![Portfolio value vs Buy & Hold, rerun](figures/04_test_equity.png)
 
 ## Method
 
@@ -28,12 +30,12 @@ The classifier has real but small skill: it is better than the dummy, and mostly
 | Models | Dummy, K-nearest neighbours, logistic regression, decision tree, random forest, HistGradientBoosting, XGBoost, perceptron, MLP (all scikit-learn Pipelines) |
 | Class imbalance | `class_weight="balanced"`, balanced sample weights (XGBoost), or oversampling of training folds only (KNN, MLP) |
 | Validation | Walk-forward by year, 2005–2020: each year predicted by a model trained only on earlier years, with a 5-row gap |
-| Tuning | Inside each year: `TimeSeriesSplit(n_splits=5, test_size=252, gap=5)`, randomized search, scored by macro-F1 |
-| Selection | Shortlist the top 3 by macro-F1. Then pick the model and Sell cut-off by excess return, years won and median Sharpe in a 2005–2020 backtest |
+| Tuning | Inside each year: `TimeSeriesSplit(n_splits=5, test_size=252, gap=5)`, scored by macro-F1. **Rerun rule:** score every setting in a fixed grid, smooth each score with its grid neighbours, pick the highest smoothed score (ties → simpler setting). First run: randomized search, highest raw score |
+| Selection | Shortlist the top 3 by macro-F1. Sell cut-off per model = highest smoothed excess return (averaged with c ± 0.05) in a 2005–2020 backtest (rerun; the first run used the highest raw value). Then rank the three on excess return, years won and median Sharpe |
 | Test | 2021 → latest, run once with the frozen recipe (retrained each year) |
 | Backtest | `vectorbt`. Signal at the close, trade at the next day's open, 100% SPY or 100% cash, 0.1% fee + 0.05% slippage per trade, vs Buy & Hold over the same days |
 
-### Validation summary, 2005–2020
+### Validation summary, 2005–2020 (first run; the rerun's table is in notebook 04)
 
 | Model | Macro-F1 | Balanced acc. | Accuracy |
 |---|---|---|---|
@@ -68,14 +70,18 @@ The classifier has real but small skill: it is better than the dummy, and mostly
 │   ├── labels.py               Buy / Hold / Sell target
 │   ├── splits.py               walk-forward folds + inner TimeSeriesSplit
 │   ├── models.py               9 pipelines, search spaces, walk-forward runner
+│   ├── grid_tuning.py          rerun: fixed grids, neighbour smoothing, tie-break
+│   ├── rerun_select.py         rerun: smoothed Sell cut-off, model ranking
 │   ├── backtest.py             vectorbt backtest, signal rule, yearly / quarterly tables
 │   └── plotting.py             shared chart style
 ├── notebooks/
 │   ├── 01_eda.ipynb            data checks, distributions, correlations, class balance
 │   ├── 02_modelling.ipynb      pipeline, tuning, comparison, settings, shortlist, importance
-│   └── 03_backtest.ipynb       model pick, untouched test, portfolio vs Buy & Hold
+│   ├── 03_backtest.ipynb       model pick, untouched test, portfolio vs Buy & Hold
+│   └── 04_rerun.ipynb          rerun with grid + smoothing: comparison, cut-off, test, first run vs rerun
 ├── tests/test_no_lookahead.py
-├── results/                    cached predictions, tuning logs, summaries
+├── docs/rerun_recipe.md        rerun rules, committed before the rerun
+├── results/                    cached predictions, tuning logs, summaries (results/v2 = rerun)
 ├── figures/                    all charts
 └── reports/lessons_learned.md
 ```

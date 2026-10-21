@@ -1,0 +1,56 @@
+[
+ {
+  "model":"Random forest",
+  "new pooled macro-F1":0.4239760182,
+  "old pooled macro-F1":0.4211605994,
+  "defaults pooled macro-F1":0.4037253127
+ },
+ {
+  "model":"Logistic regression",
+  "new pooled macro-F1":0.4232007988,
+  "old pooled macro-F1":0.4207305175,
+  "defaults pooled macro-F1":0.4190027563
+ },
+ {
+  "model":"K-nearest neighbours",
+  "new pooled macro-F1":0.4155482219,
+  "old pooled macro-F1":0.413944307,
+  "defaults pooled macro-F1":0.3645507817
+ },
+ {
+  "model":"MLP",
+  "new pooled macro-F1":0.4118233687,
+  "old pooled macro-F1":0.4232880926,
+  "defaults pooled macro-F1":0.4252356609
+ },
+ {
+  "model":"Decision tree",
+  "new pooled macro-F1":0.4083517198,
+  "old pooled macro-F1":0.400159038,
+  "defaults pooled macro-F1":0.3798475597
+ },
+ {
+  "model":"XGBoost",
+  "new pooled macro-F1":0.399304498,
+  "old pooled macro-F1":0.3987625138,
+  "defaults pooled macro-F1":0.3964772656
+ },
+ {
+  "model":"HistGradientBoosting",
+  "new pooled macro-F1":0.3931203028,
+  "old pooled macro-F1":0.3912580997,
+  "defaults pooled macro-F1":0.3900818991
+ },
+ {
+  "model":"Perceptron",
+  "new pooled macro-F1":0.3721673269,
+  "old pooled macro-F1":0.3566060601,
+  "defaults pooled macro-F1":0.331609086
+ },
+ {
+  "model":"Dummy",
+  "new pooled macro-F1":0.339724565,
+  "old pooled macro-F1":0.339724565,
+  "defaults pooled macro-F1":0.2015933495
+ }
+]
