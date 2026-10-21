@@ -1,0 +1,140 @@
+{
+ "data_last_date": "2026-10-16",
+ "test_first_date": "2021-01-04",
+ "test_last_signal_date": "2026-10-09",
+ "chosen_model": "Logistic regression",
+ "rule": "c = 0.45",
+ "cutoff": 0.45,
+ "shortlist": [
+  "Random forest",
+  "Logistic regression",
+  "K-nearest neighbours"
+ ],
+ "test_macro_f1": 0.39978996221147217,
+ "dummy_macro_f1": 0.34087620739168156,
+ "test_accuracy": 0.42995169082125606,
+ "model": {
+  "start value $": 10000.0,
+  "end value $": 20499.614866871925,
+  "total return": 1.0499614866871925,
+  "CAGR": 0.13250817789551905,
+  "Sharpe": 0.8759299192826666,
+  "max drawdown": -0.30300962718604374,
+  "trades": 31.0,
+  "% time invested": 0.9462068965517242,
+  "costs paid $": 523.7826119993438,
+  "costs % of start": 0.05237826119993438
+ },
+ "buy_hold": {
+  "start value $": 10000.0,
+  "end value $": 22787.361546143216,
+  "total return": 1.2787361546143217,
+  "CAGR": 0.15347058912830835,
+  "Sharpe": 0.9453756049776398,
+  "max drawdown": -0.24496376908509887,
+  "trades": 1.0,
+  "% time invested": 0.9993103448275862,
+  "costs paid $": 14.982518730643388,
+  "costs % of start": 0.0014982518730643388
+ },
+ "zero_cost_model": {
+  "start value $": 10000.0,
+  "end value $": 21475.343983730996,
+  "total return": 1.1475343983730997,
+  "CAGR": 0.14167388120199198,
+  "Sharpe": 0.9282741190152879,
+  "max drawdown": -0.28821805776646947,
+  "trades": 31.0,
+  "% time invested": 0.9462068965517242,
+  "costs paid $": 0.0,
+  "costs % of start": 0.0
+ },
+ "symmetric_rule_model": {
+  "start value $": 10000.0,
+  "end value $": 12362.108020462487,
+  "total return": 0.23621080204624878,
+  "CAGR": 0.03744315251945962,
+  "Sharpe": 0.3547172102266203,
+  "max drawdown": -0.254918141236107,
+  "trades": 156.0,
+  "% time invested": 0.5572413793103448,
+  "costs paid $": 2547.891886702383,
+  "costs % of start": 0.2547891886702383
+ },
+ "excess_total_return": -0.2287746679271292,
+ "excess_dollars": -2287.746679271291,
+ "years_won": 0,
+ "years_tied": 2,
+ "years": 6,
+ "quarters_won": 1,
+ "quarters_tied": 18,
+ "quarters": 24,
+ "yearly": [
+  {
+   "year": 2021,
+   "model return": 0.30554190114928326,
+   "B&H return": 0.30554190114928326,
+   "excess return": 0.0,
+   "result": "loss",
+   "% time invested": 0.996031746031746,
+   "trades": 1,
+   "model Sharpe": 2.135346565576941,
+   "B&H Sharpe": 2.135346565576941
+  },
+  {
+   "year": 2022,
+   "model return": -0.22578259369150855,
+   "B&H return": -0.18175355218261813,
+   "excess return": -0.04402904150889042,
+   "result": "loss",
+   "% time invested": 0.7808764940239044,
+   "trades": 23,
+   "model Sharpe": -1.1047714000787,
+   "B&H Sharpe": -0.7095874294645933
+  },
+  {
+   "year": 2023,
+   "model return": 0.23744372828047955,
+   "B&H return": 0.2617577141109304,
+   "excess return": -0.024313985830450857,
+   "result": "loss",
+   "% time invested": 0.956,
+   "trades": 1,
+   "model Sharpe": 1.7689727500210326,
+   "B&H Sharpe": 1.858294344802448
+  },
+  {
+   "year": 2024,
+   "model return": 0.24886484487964955,
+   "B&H return": 0.24886484487964955,
+   "excess return": 0.0,
+   "result": "tie",
+   "% time invested": 1.0,
+   "trades": 0,
+   "model Sharpe": 1.8316215315153814,
+   "B&H Sharpe": 1.8316215315153728
+  },
+  {
+   "year": 2025,
+   "model return": 0.1412219588799235,
+   "B&H return": 0.1771905127643969,
+   "excess return": -0.0359685538844734,
+   "result": "loss",
+   "% time invested": 0.956,
+   "trades": 6,
+   "model Sharpe": 0.8054189903418582,
+   "B&H Sharpe": 0.9400721023178259
+  },
+  {
+   "year": 2026,
+   "model return": 0.14995524079585865,
+   "B&H return": 0.14995524079585865,
+   "excess return": 0.0,
+   "result": "tie",
+   "% time invested": 1.0,
+   "trades": 0,
+   "model Sharpe": 1.4563843556242289,
+   "B&H Sharpe": 1.4563843556242355
+  }
+ ]
+}
